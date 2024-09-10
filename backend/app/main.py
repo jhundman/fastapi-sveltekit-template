@@ -1,24 +1,22 @@
 from fastapi import FastAPI  # Depends,
+from .database import create_db_and_tables
+
 
 # from .dependencies import get_query_token, get_token_header
-from .internal import admin
-from .routers import items, users
+from .todos import todos
 
 # app = FastAPI(dependencies=[Depends(get_query_token)])
 app = FastAPI()
 
+app.include_router(todos.router)
 
-app.include_router(users.router)
-app.include_router(items.router)
-app.include_router(
-    admin.router,
-    prefix="/admin",
-    tags=["admin"],
-    # dependencies=[Depends(get_token_header)],
-    responses={418: {"description": "I'm a teapot"}},
-)
+# Startup
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
+
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello Bigger Applications!"}
+    return {"message": "Hello There!"}

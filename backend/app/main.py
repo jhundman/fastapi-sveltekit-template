@@ -15,8 +15,6 @@ app.include_router(todos.router)
 def on_startup():
     create_db_and_tables()
 
-
-
 @app.get("/")
 async def root():
     return {"message": "Hello There!"}

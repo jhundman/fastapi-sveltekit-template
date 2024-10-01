@@ -13,16 +13,16 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=list[Todo] | None)
+@router.get("")
 async def get_todos(db: apsw.Connection = Depends(get_db)):
     with db as conn:
         cursor = conn.cursor()
         cursor.row_trace = row_tracer
         rows = cursor.execute("SELECT * FROM todo;")
-        return [Todo(**row) for row in rows]
+        return {'todos': [Todo(**row).dict() for row in rows]}
 
 
-@router.get("/{todo_id}", response_model=Todo)
+@router.get("/{todo_id}", response_model=dict)
 async def get_todo(todo_id: str, db: apsw.Connection = Depends(get_db)):
     with db as conn:
         cursor = conn.cursor()
@@ -34,7 +34,7 @@ async def get_todo(todo_id: str, db: apsw.Connection = Depends(get_db)):
         return Todo(**row)
 
 
-@router.post("/", status_code=201, response_model=Todo)
+@router.post("", status_code=201, response_model=Todo)
 async def create_todo(todo: Todo, db: apsw.Connection = Depends(get_db)):
     with db as conn:
         conn.execute(

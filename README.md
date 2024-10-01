@@ -1,6 +1,6 @@
 # fastapi-sveltekit-template
 The goal of this template is to combine a basic fastapi, pydantic, sqlite backend with a sveltekit
-frontend for shipping fullstack web apps.
+frontend for shipping fullstack web apps. It is a very basic todo list but
 
 ## Stack
 
@@ -13,5 +13,9 @@ frontend for shipping fullstack web apps.
 
 
 #### Frontend
-- [ ] TODO: 🚄 Sveltekit for a fast, compiled, reactive frontend
-- [ ] TODO: 🧩 Shadcn-Svelte for UI Components
+- 🚄 Sveltekit for a fast, compiled, reactive frontend
+- 🧩 Shadcn-Svelte for UI Components
+
+
+## Deploy
+- Plan on setting up deploy to Cloudflare pages (frontend) and Fly.io (backend)

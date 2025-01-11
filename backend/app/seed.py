@@ -15,6 +15,6 @@ def seed_db():
                 todo.task,
                 int(todo.is_completed),
                 todo.created_at.isoformat(),
-                todo.updated_at.isoformat()
+                todo.updated_at.isoformat(),
             ),
         )

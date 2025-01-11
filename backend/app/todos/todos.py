@@ -19,7 +19,7 @@ async def get_todos(db: apsw.Connection = Depends(get_db)):
         cursor = conn.cursor()
         cursor.row_trace = row_tracer
         rows = cursor.execute("SELECT * FROM todo;")
-        return {'todos': [Todo(**row).dict() for row in rows]}
+        return {"todos": [Todo(**row).dict() for row in rows]}
 
 
 @router.get("/{todo_id}", response_model=dict)

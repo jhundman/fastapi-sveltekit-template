@@ -35,13 +35,13 @@ echo "Running checks in: $BACKEND_DIR"
 
 # Run ruff format
 echo "Running ruff format..."
-ruff format .
+uv run ruff format .
 
 # Run ruff check with optional --fix
 if $FIX_MODE; then
     echo "Running ruff check with auto-fix..."
-    ruff check --fix .
+    uv run ruff check --fix .
 else
     echo "Running ruff check..."
-    ruff check .
+    uv run ruff check .
 fi
